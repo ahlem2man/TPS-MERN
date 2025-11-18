@@ -2,7 +2,7 @@
 
 [ Dépôt GitHub](https://github.com/ahlem2man/TPS-MERN/tree/main/MovieAppMern)
 
-## 🎬 Présentation
+## Présentation
 
 Ce dépôt contient trois versions d’une même application de films, développée dans le cadre du cours MERN.  
 Chaque version utilise une approche différente pour gérer l’état global :
