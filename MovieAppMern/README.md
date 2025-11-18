@@ -1,16 +1,86 @@
-# React + Vite
+# MovieAppMern
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[ Dépôt GitHub](https://github.com/ahlem2man/TPS-MERN/tree/main/MovieAppMern)
 
-Currently, two official plugins are available:
+## Présentation
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Ce dépôt contient trois versions d’une même application de films, développée dans le cadre du cours MERN.  
+Chaque version utilise une approche différente pour gérer l’état global :
 
-## React Compiler
+- **Movies-Context** : Version avec Context API (React)  
+- **Movies-Redux** : Version avec Redux Toolkit  
+- **Movies-Zustand** : Version avec Zustand  
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Toutes ont les mêmes fonctionnalités :  
+- Chargement des films populaires depuis l’API :contentReference[oaicite:0]{index=0} (TMDb)  
+- Recherche par titre  
+- Filtre par genre  
+- Système de favoris  
+- Section “Favoris” séparée  
+- Pagination  
+- Interface identique / CSS commun
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Pour chaque version (`Movies-Context`, `Movies-Redux`, `Movies-Zustand`) :
+1. Copier le dossier localement  
+2. Ouvrir un terminal dans le dossier  
+3. Créer un fichier `.env` à la racine du dossier contenant :  
+VITE_TMDB_API_KEY=VOTRE_CLE_API_ICI
+4. Installer les dépendances :  
+npm install
+5. Lancer la version :  
+npm run dev
+##  Comparatif des trois approches
+
+| Approche       | Gestion d’état         | Avantages                                                  | Inconvénients                                      |
+|----------------|------------------------|-------------------------------------------------------------|----------------------------------------------------|
+| Context API    | `useContext + useReducer` | Intégré à React, facile pour démarrer                     | Boilerplate, re-renders, peu scalable              |
+| Redux Toolkit  | `@reduxjs/toolkit`      | Structure solide, middleware, devtools                      | Plus verbeux, nécessite organisation                |
+| Zustand        | `zustand`               | Très léger, facile à apprendre, performant                | Nécessite installation, moins “standard”            |
+
+**Détails :**
+
+-  *Context API* est idéal pour des applications de petite taille ou pour apprendre.  
+-  *Redux Toolkit* est standard en entreprise pour des apps complexes.  
+-  *Zustand* combine simplicité + performance, excellent pour des états globaux rapides.
+
+---
+
+## Fonctionnalités communes:
+
+- Affichage des films populaires (via TMDb)  
+- Recherche par titre  
+- Filtre par genre  
+- Pagination  
+- Ajout/retirer des favoris (avec persistance locale)  
+- Section “Favoris” dans une barre latérale  
+- CSS commun pour design cohérent
+
+
+
+##  Captures d’écran
+### Page d’accueil  
+![Accueil ](./screenshots/home.png)
+
+###  Recherche  
+![Recherche](./screenshots/search.png)
+
+###  Filtrage par genre  
+![Filtre](./screenshots/filter.png)
+
+###  Favoris  
+![Favoris](./screenshots/favorites.png)
+
+
+
+##  Conclusion
+
+Ce projet m’a permis d’explorer trois approches différentes pour la gestion d’état dans React.  
+- Avec **Context API**, j’ai appris les fondations.  
+- Avec **Redux Toolkit**, j’ai mis en place une architecture solide.  
+- Avec **Zustand**, j’ai découvert la simplicité et la performance.
+
+Pour des applications modernes connectées à une API, je recommande **Zustand** pour l’état local + **React Query** pour les données asynchrones.  
+Ce trio offre une base performante, évolutive et propre.
+
