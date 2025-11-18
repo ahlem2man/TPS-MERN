@@ -27,9 +27,11 @@ Pour chaque version (`Movies-Context`, `Movies-Redux`, `Movies-Zustand`) :
 2. Ouvrir un terminal dans le dossier  
 3. Créer un fichier `.env` à la racine du dossier contenant :  
 VITE_TMDB_API_KEY=VOTRE_CLE_API_ICI
-4. Installer les dépendances :  
+![Clé API ](./screenshots/TMDB.png)
+
+5. Installer les dépendances :  
 npm install
-5. Lancer la version :  
+6. Lancer la version :  
 npm run dev
 ##  Comparatif des trois approches
 
