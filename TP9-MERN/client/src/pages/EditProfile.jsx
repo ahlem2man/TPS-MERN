@@ -38,7 +38,7 @@ function EditProfile() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!user?._id) {
+    if (!user) {
       setError("Utilisateur non identifié");
       return;
     }
@@ -48,10 +48,11 @@ function EditProfile() {
     setSuccess('');
 
     try {
-      const response = await api.put(`/profiles/${user._id}`, formData);
+      // 🔹 Utilisation de la nouvelle route PUT /profiles
+      const response = await api.put(`/profiles`, formData);
 
       // Mettre à jour le user dans le contexte
-      setUser(prev => ({ ...prev, ...response.data }));
+      setUser(prev => ({ ...prev, ...response.data.profile, ...response.data.user }));
 
       setSuccess('Profil mis à jour avec succès !');
 

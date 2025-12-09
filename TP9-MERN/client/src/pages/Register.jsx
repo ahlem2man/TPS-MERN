@@ -1,129 +1,92 @@
-import { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { useAuth } from '../context/AuthContext';
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
-function Register() {
-  const [username, setUsername] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+export default function Register() {
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  
   const { register } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError('');
+    setError("");
 
     try {
       await register(username, email, password);
-      navigate('/profile');
+      navigate("/profile");
     } catch (err) {
-      setError(err.response?.data?.message || "Erreur d'inscription");
+      setError(err.response?.data?.message || "Erreur d'inscription ❌");
     }
   };
 
   return (
-    <div
-      style={{
-        maxWidth: '400px',
-        margin: '100px auto',
-        padding: '30px',
-        backgroundColor: 'white',
-        borderRadius: '10px',
-        boxShadow: '0 2px 10px rgba(0,0,0,0.1)',
-      }}
-    >
-      <h2>Inscription</h2>
+    <div style={container}>
 
-      {error && (
-        <div
-          style={{
-            padding: '10px',
-            marginBottom: '15px',
-            backgroundColor: '#fee',
-            color: '#c33',
-            borderRadius: '5px',
-          }}
-        >
-          {error}
-        </div>
-      )}
+      <div style={card}>
+        <h2 style={{textAlign:"center",marginBottom:20}}>Créer un compte ✨</h2>
 
-      <form onSubmit={handleSubmit}>
-        <div style={{ marginBottom: '15px' }}>
-          <label>Nom d’utilisateur :</label>
-          <input
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-            style={{
-              width: '100%',
-              padding: '10px',
-              marginTop: '5px',
-              border: '1px solid #ddd',
-              borderRadius: '5px',
-            }}
-          />
-        </div>
+        {error && <div style={errorBox}>{error}</div>}
 
-        <div style={{ marginBottom: '15px' }}>
-          <label>Email :</label>
-          <input
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-            style={{
-              width: '100%',
-              padding: '10px',
-              marginTop: '5px',
-              border: '1px solid #ddd',
-              borderRadius: '5px',
-            }}
-          />
-        </div>
+        <form onSubmit={handleSubmit}>
 
-        <div style={{ marginBottom: '15px' }}>
-          <label>Mot de passe :</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-            minLength={6}
-            style={{
-              width: '100%',
-              padding: '10px',
-              marginTop: '5px',
-              border: '1px solid #ddd',
-              borderRadius: '5px',
-            }}
-          />
-        </div>
+          <div style={field}>
+            <label>Nom d’utilisateur</label>
+            <input type="text" value={username} onChange={(e)=>setUsername(e.target.value)} required style={input}/>
+          </div>
 
-        <button
-          type="submit"
-          style={{
-            width: '100%',
-            padding: '12px',
-            backgroundColor: '#27ae60',
-            color: 'white',
-            border: 'none',
-            borderRadius: '5px',
-            cursor: 'pointer',
-            fontSize: '16px',
-          }}
-        >
-          S’inscrire
-        </button>
-      </form>
+          <div style={field}>
+            <label>Email</label>
+            <input type="email" value={email} onChange={(e)=>setEmail(e.target.value)} required style={input}/>
+          </div>
 
-      <p style={{ marginTop: '15px', textAlign: 'center' }}>
-        Déjà un compte ? <Link to="/login">Se connecter</Link>
-      </p>
+          <div style={field}>
+            <label>Mot de passe</label>
+            <input type="password" value={password} minLength={6}
+              onChange={(e)=>setPassword(e.target.value)} required style={input}/>
+            <small style={{opacity:.6}}>Min 6 caractères</small>
+          </div>
+
+          <button type="submit" style={btn}>Créer mon compte 🚀</button>
+        </form>
+
+        <p style={{marginTop:15,textAlign:"center"}}>
+          Déjà inscrit ? <Link to="/login" style={link}>Connecte-toi</Link>
+        </p>
+      </div>
     </div>
   );
 }
 
-export default Register;
+/* =================== STYLES =================== */
+const container={
+  display:"flex",
+  justifyContent:"center",
+  alignItems:"center",
+  minHeight:"100vh",
+  background:"linear-gradient(135deg,#4facfe,#00f2fe)"
+};
+
+const card={
+  width:380,
+  background:"#fff",
+  padding:"35px 30px",
+  borderRadius:12,
+  boxShadow:"0 6px 18px rgba(0,0,0,.12)"
+};
+
+const field={marginBottom:18,display:"flex",flexDirection:"column",fontSize:14};
+const input={padding:10,borderRadius:6,border:"1px solid #ccc",marginTop:5,fontSize:15};
+
+const btn={
+  width:"100%",padding:"12px 0",
+  background:"#2ecc71",border:"none",
+  borderRadius:6,color:"#fff",cursor:"pointer",fontSize:16,
+  transition:"0.2s"
+};
+
+const errorBox={background:"#fee",color:"#c33",padding:10,borderRadius:6,marginBottom:15,textAlign:"center"};
+const link={color:"#2980b9",textDecoration:"none",fontWeight:"bold"};
