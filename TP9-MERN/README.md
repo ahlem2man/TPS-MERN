@@ -17,10 +17,14 @@ Projet développé en **MERN Stack** pour le module de développement Web avanc�
 
 2️⃣ Lancer le Backend:
 
+![Backend](screenshots/1.png)
+
 Par défaut il tourne sur :
 ➡ http://localhost:5000
 
 3️⃣ Lancer le Frontend :
+
+![frontend](screenshots/2.png)
 
 👉 Ouverture auto sur http://localhost:5173
 
@@ -52,10 +56,10 @@ Par défaut il tourne sur :
 📍 Ajouter dans /screenshots/:
 | Page                                     | Screenshot   |
 | ---------------------------------------- | ------------ |
-| Page d'accueil                           | home.png     |
-| Liste des cours                          | courses.png  |
-| Détails d'un cours + bouton "S'inscrire" | details.png  |
-| Page Register                            | register.png |
-| Page Login                               | login.png    |
-| Page Profil utilisateur                  | profile.png  |
-| Ajout d’un avis + inscription réussie    | review.png   |
+| Page d'accueil                           | ![Page d'accueil](screenshots/home.png)    |
+| Liste des cours                          |![Page courses](screenshots/courses.png)  |
+| Détails d'un cours + bouton "S'inscrire" |![Page details](screenshots/details.png) |
+| Page Register                            | ![Page register](screenshots/register.png) |
+| Page Login                               | ![Page login](screenshots/login.png)    |
+| Page Profil utilisateur                  |![Page profile](screenshots/profile.png)  |
+| Ajout d’un avis + inscription réussie    |![Page review](screenshots/review.png)  |
